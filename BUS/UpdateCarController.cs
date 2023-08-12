@@ -13,13 +13,13 @@ namespace Project1.BUS
         public void updateView(){
             
             while(true){
-                int choose = UpdateCarView.MenuLayer(); 
+                int choose = HomeView.AdminMenu();
                 if(choose==-1) break;
                 else
                 switch (choose)
                 {
                     case 1:
-                        Car car1=UpdateCarView.UpdateCarLayer();
+                        Car car1=UpdateCarView.UpdateCar();
                         if(car1.Name!=null){
                             if(car1.Name=="Delete")
                                 car1.Delete();
@@ -28,7 +28,7 @@ namespace Project1.BUS
                         }
                         break;
                     case 2:
-                        Car car2=UpdateCarView.CreateCarLayer();
+                        Car car2=UpdateCarView.CreateCar();
                         if(car2.Name!=null)
                             car2.Create();
                         break;

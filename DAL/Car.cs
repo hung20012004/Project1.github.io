@@ -24,6 +24,7 @@ namespace Project1.DAL
         public int max_speed;
         public int door_num;
         public int seat_num;
+        public int quantity;
         public void Update(){
             using (MySqlCommand cmd = DBHelper.UseStored("update_car"))
             {
@@ -41,6 +42,7 @@ namespace Project1.DAL
                 cmd.Parameters.Add("rq_seat_num", MySqlDbType.Int32).Value=seat_num;
                 cmd.Parameters.Add("rq_door_num", MySqlDbType.Int32).Value=door_num;
                 cmd.Parameters.Add("rq_price", MySqlDbType.Int64).Value=Price;
+                cmd.Parameters.Add("rq_quantity", MySqlDbType.Int32).Value=quantity;
                 cmd.ExecuteNonQuery();
             }
         }
@@ -69,6 +71,7 @@ namespace Project1.DAL
                 cmd.Parameters.Add("rq_seat_num", MySqlDbType.Int32).Value=seat_num;
                 cmd.Parameters.Add("rq_door_num", MySqlDbType.Int32).Value=door_num;
                 cmd.Parameters.Add("rq_price", MySqlDbType.Int64).Value=Price;
+                cmd.Parameters.Add("rq_quantity", MySqlDbType.Int32).Value=quantity;
                 cmd.ExecuteNonQuery();
             }
         }

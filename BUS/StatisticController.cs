@@ -9,7 +9,7 @@ namespace Project1.BUS
     public class StatisticController
     {
         public void updateView(){
-            StatisticView.MenuLayer();
+            StatisticView.Menu();
         }
     }
 }

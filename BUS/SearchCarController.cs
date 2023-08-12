@@ -12,11 +12,11 @@ namespace Project1.BUS
     {
         public void updateView(){
             while(true){
-                Car car=SearchCarView.CarsLayer();
+                Car car=SearchCarView.Cars();
                 if(car.ID!=0){
-                    if(SearchCarView.CarDetailLayer(car)==1){
-                        RequestController controller=new RequestController();
-                        controller.updateView(car);
+                    if(SearchCarView.CarDetail(car)==1){
+                        OrderController controller=new();
+                        controller.updateCustomerView1(car);
                     }
                 }
                 else if(car.ID==0) break;
@@ -50,6 +50,7 @@ namespace Project1.BUS
                         temp.door_num=reader.GetInt32("door_num");
                         temp.seat_num=reader.GetInt32("seat_num");
                         temp.Price=reader.GetInt64("price");
+                        temp.quantity=reader.GetInt32("quantity_in_stock");
                         cars.Add(temp);
                     }
                 }

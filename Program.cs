@@ -4,26 +4,17 @@ using System.Text;
 using Project1.GUI;
 using Project1.BUS;
 using Project1.DAL;
-namespace Project1
-{
-    class Program{
-        
-        
-        static void Main(string[] args){    
-            Console.WindowWidth = 93;
-            Console.WindowHeight = 28;
-            Console.CursorVisible = false;
-            Console.OutputEncoding = Encoding.Unicode;
-            Console.InputEncoding = Encoding.Unicode;
+using Project1;
 
-            DBHelper.GetConnection();
-            DBHelper.OpenConnection();
+Console.WindowWidth = 93;
+Console.WindowHeight = 29;
+Console.CursorVisible = false;
+Console.OutputEncoding = Encoding.Unicode;
+Console.InputEncoding = Encoding.Unicode;
 
-            HomeController controller=new HomeController();
-            controller.updateView();
-            
-            DBHelper.CloseConnection();
-        }
-        
-    }
-}
+DBHelper.GetConnection();
+DBHelper.OpenConnection();
+
+LoginController.updateView();
+
+DBHelper.CloseConnection();

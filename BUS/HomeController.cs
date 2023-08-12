@@ -10,27 +10,87 @@ namespace Project1.BUS
     public class HomeController
     {
         public void updateView(){
+            switch (LoginController.accountant.department)
+            {
+                case "Admin":
+                    updateAdminView();
+                    break;
+                case "Manager":
+                    updateManagerView();
+                    break;
+                case "Sales":
+                    updateSalesView();
+                    break;
+                case "Customer":
+                    updateCustomerView();
+                    break;
+            }
+        }
+        public void updateAdminView(){
+            UpdateCarController controller=new();
+            controller.updateView();
+        }
+        public void updateManagerView(){
             while(true){
-                int choose=HomeView.MenuLayer();
-                if (choose==0) break; 
-                switch (choose)
+                int choose=HomeView.ManagerMenu();
+                if(choose==-1) 
+                    break;
+                else switch (choose)
                 {
-                    case 0:
+                    case 1:
+                        OrderController controller=new();
+                        controller.updateManagerView();
                         break;
-                    case 1: 
-                        SearchCarController controller1=new SearchCarController();
-                        controller1.updateView();   
+                    case 2:
                         break;
-                    case 2: 
-                        RequestController controller2=new RequestController();
+                }
+            }
+        }
+        public void updateSalesView(){
+            while(true){
+                int choose=HomeView.SalesMenu();
+                if(choose==-1) 
+                    break;
+                else switch (choose)
+                {
+                    case 1:
+                        OrderController controller1=new();
+                        controller1.updateSalesView1();
+                        break;
+                    case 2:
+                        OrderController controller2=new();
+                        controller2.updateSalesView2();
+                        break;
+                    case 3:
+                        OrderController controller3=new();
+                        controller3.updateSalesView3();
+                        break;
+                }
+            }
+        }
+        public void updateCustomerView(){
+            while(true){
+                int choose=HomeView.CustomerMenu();
+                if(choose==-1) 
+                    break;
+                else switch (choose)
+                {
+                    case 1:
+                        SearchCarController controller1=new();
+                        controller1.updateView();
+                        break;
+                    case 2:
+                        OrderController controller2=new();
                         Car car=new();
-                        controller2.updateView(car);
+                        controller2.updateCustomerView1(car);
                         break;
-                    case 3:  
-                        LoginController controller3=new LoginController();
-                        controller3.updateView();
+                    case 3:
+                        OrderController controller3=new();
+                        controller3.updateCustomerView2();
                         break;
-                }  
+                    case 4:
+                        break;
+                }
             }
         }
     }

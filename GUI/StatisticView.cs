@@ -7,7 +7,7 @@ namespace Project1.GUI
 {
     public class StatisticView
     {
-        public static void MenuLayer(){
+        public static void Menu(){
             while(true){
                 Console.Clear();
                 while(true){
@@ -19,17 +19,17 @@ namespace Project1.GUI
                     else
                     switch (choose){
                         case ConsoleKey.D1:
-                            StatistcCarLayer();
+                            StatistcCar();
                             break;
                         case ConsoleKey.D2:
-                            StatistcShowroomLayer();
+                            StatistcShowroom();
                             break;
 
                     }
                 }
             }            
         }
-        public static void StatistcShowroomLayer(){}
-        public static void StatistcCarLayer(){}
+        public static void StatistcShowroom(){}
+        public static void StatistcCar(){}
     }
 }

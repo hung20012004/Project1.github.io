@@ -11,55 +11,43 @@ namespace Project1.BUS
 {
     public class LoginController
     {
-
-        public void updateView(){    
-            Accountant acc=LoginView.LoginLayer();        
-            if(acc!=null){
-                acc=checkAccount(acc);
-                if(acc.department=="admin")
-                    AdminAccount();
-                else if(acc.department=="manager")
-                    SalesManagerAccount(acc.showroom_ID);
-                else    
-                    LoginView.loginFail();
-            }
-        }
-        public void SalesManagerAccount(int showroom_ID){
-            while(true){
-                int choose=LoginView.SalesManagerMenuLayer();
-                OrderController controller1=new OrderController();
-                StatisticController controller2=new StatisticController();
-                if(choose==0) break;
-                else
-                    switch (choose)
-                    {
-                        case 1: 
-                            controller1.updateView(showroom_ID);
-                            break;
-                        case 2:
-                            break;
+        public static Accountant accountant=new();
+        public static void updateView(){   
+            while(true){ 
+                int choose=LoginView.Menu();
+                if(choose==1){  
+                    accountant=LoginView.Login();      
+                    if(checkAccount()){ 
+                        HomeController controller=new();
+                        controller.updateView();
                     }
+                }
+                else if(choose==2){
+                    
+                }
+                else break;
             }
         }
-        public void AdminAccount(){
-            UpdateCarController controller=new UpdateCarController();
-            controller.updateView();
-        }
-        public Accountant checkAccount(Accountant accountant){
+        public static bool checkAccount(){
             using (MySqlCommand cmd = DBHelper.UseStored("check_account"))
                 {
-                    cmd.Parameters.Add("rq_id", MySqlDbType.Int32).Value=accountant.ID;
+                    cmd.Parameters.Add("rq_username", MySqlDbType.VarChar).Value=accountant.Username;
                     cmd.Parameters.Add("rq_password", MySqlDbType.VarChar).Value=accountant.password;
                     cmd.ExecuteNonQuery();
                     using( MySqlDataReader reader =cmd.ExecuteReader()){
                         while (reader.Read())
                         {
+                            accountant.ID= reader.GetInt32("id");
                             accountant.department= $"{reader["department"]}";
                             accountant.showroom_ID= reader.GetInt32("showroom_id");
+                            accountant.name= $"{reader["name"]}";
+                            accountant.phone= $"{reader["phone"]}";
                         }
                     }
                 }
-            return accountant;
+            if(accountant.ID!=0)
+                return true;
+            return false;
         }
         
     }
