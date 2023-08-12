@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Text;
 using Project1.BUS;
 
-namespace Project1.GUI
+namespace Project1
 {
     public class UICreater
     {
