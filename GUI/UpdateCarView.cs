@@ -16,14 +16,16 @@ namespace Project1.GUI
             while(true){
                 UICreater.CreateUI();
                 UICreater.CreateMenu(5,"                   INSERT CAR                     ");
-                UICreater.GoTo(13,25);Console.WriteLine(" 1 . Model: "+model.name);
-                Console.CursorLeft=25;Console.WriteLine(" 2 . Saloon: "+saloon.name);
-                Console.CursorLeft=25;Console.WriteLine(" 3 . Car information ");
+                UICreater.GoTo(13,38);Console.WriteLine(" 1 . Model: "+model.name);
+                Console.CursorLeft=38;Console.WriteLine(" 2 . Saloon: "+saloon.name);
+                Console.CursorLeft=38;Console.WriteLine(" 3 . Car information ");
                 ConsoleKey choose= Console.ReadKey().Key;
                 switch (choose){
-                    case ConsoleKey.Escape or ConsoleKey.Enter:
+                    case ConsoleKey.Enter:
                         car.Salloon_ID=saloon.ID;
                         return car;
+                    case ConsoleKey.Escape:
+                        return new();
                     case ConsoleKey.D1:
                         model=SearchCarView.ChooseModel();
                         saloon=new();
@@ -32,19 +34,20 @@ namespace Project1.GUI
                         saloon=SearchCarView.ChooseSaloon(model);
                         break;
                     case ConsoleKey.D3:
-                        car=InsertDetail();
+                        car=InsertDetail(car);
                         break;
                 }
             }
         }
-        public static Car InsertDetail(){
+        public static Car InsertDetail(Car car){
             Console.CursorVisible = false;
-            Car car=new();          
+                    
                 while(true){
                     Console.Clear();
                     UICreater.CreateUI();
-                    UICreater.GoTo(8,7);   Console.WriteLine("                                   INSERT DETAIL                               ");
-                    Console.CursorLeft=7;  Console.WriteLine("───────────────────────────────────────────────────────────────────────────────");
+                    UICreater.GoTo(8,7);   Console.WriteLine("                                             INSERT DETAIL                               ");
+                    Console.CursorLeft=7;  Console.WriteLine("─────────────────────────────────────────────────────────────────────────────────────────────────────────");
+                    Console.CursorLeft = 9;Console.WriteLine("0 . Name               │ "+car.Name);
                     Console.CursorLeft = 9;Console.WriteLine("1 . Engine             │ "+car.Engine);
                     Console.CursorLeft = 9;Console.WriteLine("2 . Number of Cylinder │ "+car.Cylinder);
                     Console.CursorLeft = 9;Console.WriteLine("3 . Displacement       │ "+car.Displacement);
@@ -62,74 +65,94 @@ namespace Project1.GUI
                     ConsoleKey choose=Console.ReadKey().Key;
                     switch (choose)
                     {
+                        case ConsoleKey.D0:
+                            Console.CursorVisible = true;
+                            UICreater.GoTo(10,34);Console.Write("                                 ");
+                            UICreater.GoTo(10,34);car.Name=Console.ReadLine();
+                            Console.CursorVisible = false;
+                            break;
                         case ConsoleKey.D1:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(10,34);car.Engine=Console.ReadLine();
+                            UICreater.GoTo(11,34);Console.Write("                                 ");
+                            UICreater.GoTo(11,34);car.Engine=Console.ReadLine();
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.D2:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(11,34);car.Cylinder=int.Parse(Console.ReadLine());
+                            UICreater.GoTo(12,34);Console.Write("                            ");
+                            UICreater.GoTo(12,34);car.Cylinder=int.Parse(Console.ReadLine());
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.D3:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(12,34);car.Displacement=double.Parse(Console.ReadLine());
+                            UICreater.GoTo(13,34);Console.Write("                            ");
+                            UICreater.GoTo(13,34);car.Displacement=double.Parse(Console.ReadLine());
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.D4:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(13,34);car.max_speed=int.Parse(Console.ReadLine());
+                            UICreater.GoTo(14,34);Console.Write("                            ");
+                            UICreater.GoTo(14,34);car.max_speed=int.Parse(Console.ReadLine());
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.D5:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(14,34);car.Price=long.Parse(Console.ReadLine());
+                            UICreater.GoTo(15,34);Console.Write("                            ");
+                            UICreater.GoTo(15,34);car.Price=long.Parse(Console.ReadLine());
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.D6:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(15,34);car.Colors=Console.ReadLine();
+                            UICreater.GoTo(16,34);Console.Write("                            ");
+                            UICreater.GoTo(16,34);car.Colors=Console.ReadLine();
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.D7:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(16,34);car.Uphostery=Console.ReadLine();
+                            UICreater.GoTo(17,34);Console.Write("                            ");
+                            UICreater.GoTo(17,34);car.Uphostery=Console.ReadLine();
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.D8:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(17,34);car.Height=double.Parse(Console.ReadLine());
+                            UICreater.GoTo(18,34);Console.Write("                            ");
+                            UICreater.GoTo(18,34);car.Height=double.Parse(Console.ReadLine());
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.D9:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(18,34);car.Weight=double.Parse(Console.ReadLine());
+                            UICreater.GoTo(19,34);Console.Write("                            ");
+                            UICreater.GoTo(19,34);car.Weight=double.Parse(Console.ReadLine());
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.A:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(19,34);car.Length=double.Parse(Console.ReadLine());
+                            UICreater.GoTo(20,34);Console.Write("                            ");
+                            UICreater.GoTo(20,34);car.Length=double.Parse(Console.ReadLine());
                             Console.CursorVisible = false;
                             break;    
                         case ConsoleKey.B:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(20,34);car.Width=double.Parse(Console.ReadLine());
+                            UICreater.GoTo(21,34);Console.Write("                            ");
+                            UICreater.GoTo(21,34);car.Width=double.Parse(Console.ReadLine());
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.C:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(21,34);car.quantity=int.Parse(Console.ReadLine());
+                            UICreater.GoTo(22,34);Console.Write("                            ");
+                            UICreater.GoTo(22,34);car.quantity=int.Parse(Console.ReadLine());
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.D:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(21,34);car.door_num=int.Parse(Console.ReadLine());
+                            UICreater.GoTo(23,34);Console.Write("                            ");
+                            UICreater.GoTo(23,34);car.door_num=int.Parse(Console.ReadLine());
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.E:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(21,34);car.seat_num=int.Parse(Console.ReadLine());
+                            UICreater.GoTo(23,34);Console.Write("                            ");
+                            UICreater.GoTo(23,34);car.seat_num=int.Parse(Console.ReadLine());
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.Escape: 
@@ -146,73 +169,73 @@ namespace Project1.GUI
                 while(true){
                     Console.Clear();
                     UICreater.CreateUI();
-                    UICreater.GoTo(8,7);   Console.WriteLine("                                   UPDATE DETAIL                               ");
-                    Console.CursorLeft=7;  Console.WriteLine("───────────────────────────────────────────────────────────────────────────────");
-                    Console.CursorLeft = 9;Console.WriteLine("1 . Engine             │ "+car.Engine);
-                    Console.CursorLeft = 9;Console.WriteLine("2 . Price              │ "+car.Price);
-                    Console.CursorLeft = 9;Console.WriteLine("3 . Colors             │ "+car.Colors);
-                    Console.CursorLeft = 9;Console.WriteLine("4 . Uphostery          │ "+car.Uphostery);
-                    Console.CursorLeft = 9;Console.WriteLine("5 . Height             │ "+car.Height);
-                    Console.CursorLeft = 9;Console.WriteLine("6 . Weight             │ "+car.Weight);
-                    Console.CursorLeft = 9;Console.WriteLine("7 . Length             │ "+car.Length);
-                    Console.CursorLeft = 9;Console.WriteLine("8 . Width              │ "+car.Width);
-                    Console.CursorLeft = 9;Console.WriteLine("9 . Quantity in stock  │ "+car.quantity);
+                    UICreater.GoTo(8,7);   Console.WriteLine("                                               UPDATE DETAIL                               ");
+                    Console.CursorLeft=7;  Console.WriteLine("─────────────────────────────────────────────────────────────────────────────────────────────────────────");
+                    Console.CursorLeft = 9;Console.WriteLine("1 . Engine              │ "+car.Engine);
+                    Console.CursorLeft = 9;Console.WriteLine("2 . Price               │ "+car.Price);
+                    Console.CursorLeft = 9;Console.WriteLine("3 . Colors              │ "+car.Colors);
+                    Console.CursorLeft = 9;Console.WriteLine("4 . Uphostery           │ "+car.Uphostery);
+                    Console.CursorLeft = 9;Console.WriteLine("5 . Height              │ "+car.Height);
+                    Console.CursorLeft = 9;Console.WriteLine("6 . Weight              │ "+car.Weight);
+                    Console.CursorLeft = 9;Console.WriteLine("7 . Length              │ "+car.Length);
+                    Console.CursorLeft = 9;Console.WriteLine("8 . Width               │ "+car.Width);
+                    Console.CursorLeft = 9;Console.WriteLine("9 . Quantity in stock   │ "+car.quantity);
                     Console.CursorLeft = 9;Console.WriteLine("0 . Delete ");
                     ConsoleKey choose=Console.ReadKey().Key;
                     switch (choose)
                     {
                         case ConsoleKey.D1:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(10,9);Console.Write("1 . Engine            │                          ");
-                            UICreater.GoTo(10,34);car.Engine=Console.ReadLine();
+                            UICreater.GoTo(10,9);Console.Write("1 . Engine             │                          ");
+                            UICreater.GoTo(10,35);car.Engine=Console.ReadLine();
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.D2:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(11,9);Console.Write("2 . Price             │                        ");
-                            UICreater.GoTo(11,34);car.Price=long.Parse(Console.ReadLine());
+                            UICreater.GoTo(11,9);Console.Write("2 . Price              │                        ");
+                            UICreater.GoTo(11,35);car.Price=long.Parse(Console.ReadLine());
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.D3:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(12,9);Console.Write("3 . Colors            │                                           ");
-                            UICreater.GoTo(12,34);car.Colors=Console.ReadLine();
+                            UICreater.GoTo(12,9);Console.Write("3 . Colors             │                                           ");
+                            UICreater.GoTo(12,35);car.Colors=Console.ReadLine();
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.D4:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(13,9);Console.Write("4 . Uphostery          │                                           ");
-                            UICreater.GoTo(13,34);car.Uphostery=Console.ReadLine();
+                            UICreater.GoTo(13,9);Console.Write("4 . Uphostery           │                                           ");
+                            UICreater.GoTo(13,35);car.Uphostery=Console.ReadLine();
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.D5:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(14,9);Console.Write("5 . Height             │                            ");
-                            UICreater.GoTo(14,34);car.Height=double.Parse(Console.ReadLine());
+                            UICreater.GoTo(14,9);Console.Write("5 . Height              │                            ");
+                            UICreater.GoTo(14,35);car.Height=double.Parse(Console.ReadLine());
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.D6:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(15,9);Console.Write("6 . Weight             │                            ");
-                            UICreater.GoTo(15,34);car.Weight=double.Parse(Console.ReadLine());
+                            UICreater.GoTo(15,9);Console.Write("6 . Weight              │                            ");
+                            UICreater.GoTo(15,35);car.Weight=double.Parse(Console.ReadLine());
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.D7:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(16,9);Console.Write("7 . Length             │                           ");
-                            UICreater.GoTo(16,34);car.Length=double.Parse(Console.ReadLine());
+                            UICreater.GoTo(16,9);Console.Write("7 . Length              │                           ");
+                            UICreater.GoTo(16,35);car.Length=double.Parse(Console.ReadLine());
                             Console.CursorVisible = false;
                             break;    
                         case ConsoleKey.D8:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(17,9);Console.Write("8 . Width              │                              ");
-                            UICreater.GoTo(17,34);car.Width=double.Parse(Console.ReadLine());
+                            UICreater.GoTo(17,9);Console.Write("8 . Width               │                              ");
+                            UICreater.GoTo(17,35);car.Width=double.Parse(Console.ReadLine());
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.D9:
                             Console.CursorVisible = true;
-                            UICreater.GoTo(18,9);Console.Write("9 . Quantity in stock  │                              ");
-                            UICreater.GoTo(18,34);car.quantity=int.Parse(Console.ReadLine());
+                            UICreater.GoTo(18,9);Console.Write("9 . Quantity in stock   │                              ");
+                            UICreater.GoTo(18,35);car.quantity=int.Parse(Console.ReadLine());
                             Console.CursorVisible = false;
                             break;
                         case ConsoleKey.D0:
@@ -228,7 +251,13 @@ namespace Project1.GUI
         public static void WarningExistedCar(){
             UICreater.CreateUI();
             UICreater.CreateMenu(3,"                     WARNING                      ");
-            UICreater.GoTo(13,25);Console.WriteLine(" This car had been existed in Database ");
+            UICreater.GoTo(13,38);Console.WriteLine(" This car had been existed in Database! ");
+            Console.ReadKey();
+        }
+        public static void InsertCarSuccess(){
+            UICreater.CreateUI();
+            UICreater.CreateMenu(3,"                      NOICE                       ");
+            UICreater.GoTo(13,38);Console.WriteLine(" Insert car success!");
             Console.ReadKey();
         }
     }

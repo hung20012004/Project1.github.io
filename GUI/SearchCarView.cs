@@ -27,26 +27,32 @@ namespace Project1.GUI
                     Console.Clear();
                     UICreater.CreateUI();
                     UICreater.Page(fist,last);
+                    UICreater.GoTo(8,7); Console.WriteLine("                                                SEARCH CAR                                  ");
+                    Console.CursorLeft=7;Console.WriteLine("─────────────────────────────────────────────────────────────────────────────────────────────────────────");
                     if(model.ID==0) model.name="All"; 
                     if(saloon.ID==0) saloon.name="All"; 
-                    UICreater.GoTo(8,28);Console.WriteLine("F1. Model: "+String.Format("{0,-12}",model.name)+"F2. Saloon: "+saloon.name);
-                    UICreater.GoTo(9,28);Console.Write("F3. Price: "+String.Format("{0:0,0 vnđ}",fistPrice)+" to ");
+                    UICreater.GoTo(10,41);Console.WriteLine("F1. Model: "+String.Format("{0,-12}",model.name)+"F2. Saloon: "+saloon.name);
+                    UICreater.GoTo(11,41);Console.Write("F3. Price: "+String.Format("{0:0,0 vnđ}",fistPrice)+" to ");
                     if(lastPrice==long.MaxValue)
                         Console.Write("00 vnđ");
                     else
                         Console.WriteLine(String.Format("{0:0,0 vnđ}",lastPrice));
                     int ord=1;
                     if(cars.Count()==0){
-                        UICreater.GoTo(11,43);
+                        UICreater.GoTo(14,43);
                         Console.Write("No result!");
                         if(Console.ReadKey().Key==ConsoleKey.Escape) 
                             return new();
                     }
                     else{
                         for(int i=fist*9-9;i<fist*9;i++){
-                            UICreater.GoTo(11+ord,12);
+                            UICreater.GoTo(11+ord*2,12);
                             if(i==cars.Count()) break;
-                            Console.WriteLine(ord+" . "+String.Format("{0,-39}",cars[i].Name)+String.Format("{0:0,0 vnđ}",cars[i].Price));
+                            Console.Write(ord+" . "+String.Format("{0,-39}",cars[i].Name)+String.Format("{0,-19}",String.Format("{0:0,0 vnđ}",cars[i].Price))+"              ");
+                            if(cars[i].quantity>0) 
+                                Console.WriteLine("Available");
+                            else 
+                                Console.WriteLine("Not available");
                             ord++;
                         }
                         ConsoleKey choose= Console.ReadKey().Key;
@@ -138,13 +144,13 @@ namespace Project1.GUI
         }
         public static void ChoosePriceRange(){
             Console.CursorVisible = true;
-            UICreater.GoTo(9,39);
+            UICreater.GoTo(11,52);
             Console.Write(string.Format("{0,44}"," "));
-            UICreater.GoTo(9,39);
+            UICreater.GoTo(11,52);
             try
             {
                 fistPrice=long.Parse( Console.ReadLine());
-                UICreater.GoTo(9,50);
+                UICreater.GoTo(11,63);
                 Console.Write(" vnđ to ");
                 lastPrice=long.Parse( Console.ReadLine());
             }
@@ -162,9 +168,9 @@ namespace Project1.GUI
             Model model=new();
             UICreater.CreateUI();
             UICreater.CreateMenu(7,"                       MODEL                      ");
-            UICreater.GoTo(13,25);Console.WriteLine("0 . All");
+            UICreater.GoTo(13,38);Console.WriteLine("0 . All");
             for(int i=0;i<models.Count();i++){
-                Console.CursorLeft=25;Console.WriteLine((i+1)+" . "+models[i].name);
+                Console.CursorLeft=38;Console.WriteLine((i+1)+" . "+models[i].name);
             }
             ConsoleKey choose=Console.ReadKey().Key;
             switch (choose)
@@ -201,9 +207,9 @@ namespace Project1.GUI
                 UICreater.CreateMenu(10,"                      SALOON                      ");
                 UICreater.Page(fist,last);
                 int ord=1;
-                UICreater.GoTo(12,25);Console.WriteLine("0 . All");
+                UICreater.GoTo(12,38);Console.WriteLine("0 . All");
                 for(int i=fist*9-9;i<fist*9;i++){
-                    UICreater.GoTo(12+ord,25);
+                    UICreater.GoTo(12+ord,38);
                     if(i==saloons.Count) break;
                     Console.WriteLine(ord+" . "+saloons[i].name);
                     ord++;
@@ -262,12 +268,12 @@ namespace Project1.GUI
         public static int CarDetail(Car car){
             Console.Clear();
             UICreater.CreateUI();
-            UICreater.GoTo(8,7); Console.WriteLine("                                    DETAIL                                     ");
-            Console.CursorLeft=7;Console.WriteLine("───────────────────────────────────────────────────────────────────────────────");
-            Console.CursorLeft=9;Console.WriteLine("Car               │ "+car.Name );Console.CursorLeft = 9;
+            UICreater.GoTo(8,7); Console.WriteLine("                                                 DETAIL                                                  ");
+            Console.CursorLeft=7;Console.WriteLine("─────────────────────────────────────────────────────────────────────────────────────────────────────────");
+            Console.CursorLeft=9;Console.WriteLine("Car                │ "+car.Name );Console.CursorLeft = 9;
             if(car.quantity!=0)
-                Console.WriteLine("State             │ Available");
-            else Console.WriteLine("State             │ Not available");
+                Console.WriteLine("State              │ Available");
+            else Console.WriteLine("State              │ Not available");
             Console.CursorLeft = 9;
             Console.WriteLine("Price              │ "+String.Format("{0:0,0 vnđ}",car.Price));Console.CursorLeft = 9;
             Console.WriteLine("Engine             │ "+car.Engine);Console.CursorLeft = 9;

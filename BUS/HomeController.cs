@@ -38,10 +38,12 @@ namespace Project1.BUS
                 else switch (choose)
                 {
                     case 1:
-                        OrderController controller=new();
-                        controller.updateManagerView();
+                        OrderController controller1=new();
+                        controller1.updateManagerView();
                         break;
                     case 2:
+                        StatisticController controller2=new();
+                        controller2.updateView();
                         break;
                 }
             }
@@ -88,7 +90,8 @@ namespace Project1.BUS
                         OrderController controller3=new();
                         controller3.updateCustomerView2();
                         break;
-                    case 4:
+                    case 4: 
+                        LoginView.ChangePassword();
                         break;
                 }
             }

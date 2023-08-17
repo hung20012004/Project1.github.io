@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\LXH\\Desktop\\VTCA\\1.Project 1\\Project1\\Project1.csproj": {}
+    "C:\\Users\\LXH\\Desktop\\VTCA\\1.Project 1\\Project1\\Project1.csproj": {}
   },
   "projects": {
-    "c:\\Users\\LXH\\Desktop\\VTCA\\1.Project 1\\Project1\\Project1.csproj": {
+    "C:\\Users\\LXH\\Desktop\\VTCA\\1.Project 1\\Project1\\Project1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\LXH\\Desktop\\VTCA\\1.Project 1\\Project1\\Project1.csproj",
+        "projectUniqueName": "C:\\Users\\LXH\\Desktop\\VTCA\\1.Project 1\\Project1\\Project1.csproj",
         "projectName": "Project1",
-        "projectPath": "c:\\Users\\LXH\\Desktop\\VTCA\\1.Project 1\\Project1\\Project1.csproj",
+        "projectPath": "C:\\Users\\LXH\\Desktop\\VTCA\\1.Project 1\\Project1\\Project1.csproj",
         "packagesPath": "C:\\Users\\LXH\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\LXH\\Desktop\\VTCA\\1.Project 1\\Project1\\obj\\",
+        "outputPath": "C:\\Users\\LXH\\Desktop\\VTCA\\1.Project 1\\Project1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LXH\\AppData\\Roaming\\NuGet\\NuGet.Config"

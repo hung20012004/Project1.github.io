@@ -15,6 +15,9 @@ namespace Project1.DAL
         public string? carName;
         public string? customerName;
         public string? salesName;
+        public string? managerName;
+        public string? showroomName;
+        public string? showroomAddress;
         public string? phone;
         
         public string? requestTime;
@@ -29,7 +32,13 @@ namespace Project1.DAL
         public int state;
         public string? State;
 
-        public void Delete(){}
+        public void Delete(){
+            using (MySqlCommand cmd = DBHelper.UseStored("delete_order"))
+            {
+                cmd.Parameters.Add("rq_order_id", MySqlDbType.Int32).Value=ID;
+                cmd.ExecuteNonQuery();
+            }
+        }
         public void Create_request(){
             using (MySqlCommand cmd = DBHelper.UseStored("create_request"))
             {

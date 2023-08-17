@@ -11,13 +11,18 @@ as
     
 create view all_order
 as
-	select ord.id,ord.customer_id,ord.sales_id,acc.name as customer,ac.name as sales,acc.phone,ord.request_time,ord.processed_request_time,ord.create_order_time,ord.get_car_time,ord.note,c.id as car_id,c.name as car,ord.state,ord.showroom_id,ord.bill
+	select ord.id,ord.customer_id,ord.sales_id,acc.name as customer,ac.name as sales,acc.phone,ord.request_time,ord.processed_request_time,ord.create_order_time,ord.get_car_time,ord.note,c.id as car_id,c.name as car,ord.state,ord.showroom_id,ord.bill,sr.name,sr.address,ac2.name as manager_name
     from order_list as ord
     inner join car as c
     on c.id=ord.car_id
     inner join accountant as acc
     on ord.customer_id=acc.id
+    inner join showroom as sr
+    on ord.showroom_id=sr.id
+    inner join accountant as ac2
+    on ac2.showroom_id=sr.id
     inner join accountant as ac
-    on ord.sales_id=ac.id;
+    on ord.sales_id=ac.id
+    where ac2.department="Manager";
     
 	

@@ -17,52 +17,58 @@ namespace Project1
             else    
                 user=LoginController.accountant.name;
             Console.Clear();
-            Console.WriteLine("┌───────────────────────────────────────────────────────────────────────────────────────────┐");
-            Console.WriteLine("│┌───────────────┬─────────────────────────────────────────────────────────────────────────┐│");
-            Console.WriteLine("││               │                                                                    (?)  ││");
-            Console.WriteLine("││               │                    WELLCOME "+string.Format("{0,-20}",user)+"                        ││");
-            Console.WriteLine("││               │                                                                         ││");
-            Console.WriteLine("│└───────────────┴─────────────────────────────────────────────────────────────────────────┘│");
-            Console.WriteLine("│                                                                                           │");
-            Console.WriteLine("│     ┌───────────────────────────────────────────────────────────────────────────────┐     │");
-            Console.WriteLine("│     │                                                                               │     │");
-            Console.WriteLine("│     │                                                                               │     │");
-            Console.WriteLine("│     │                                                                               │     │");
-            Console.WriteLine("│     │                                                                               │     │");
-            Console.WriteLine("│     │                                                                               │     │");
-            Console.WriteLine("│     │                                                                               │     │");
-            Console.WriteLine("│     │                                                                               │     │");
-            Console.WriteLine("│     │                                                                               │     │");
-            Console.WriteLine("│     │                                                                               │     │");
-            Console.WriteLine("│     │                                                                               │     │");
-            Console.WriteLine("│     │                                                                               │     │");
-            Console.WriteLine("│     │                                                                               │     │");
-            Console.WriteLine("│     │                                                                               │     │");
-            Console.WriteLine("│     │                                                                               │     │");
-            Console.WriteLine("│     │                                                                               │     │");
-            Console.WriteLine("│     │                                                                               │     │");
-            Console.WriteLine("│     │                                                                               │     │");
-            Console.WriteLine("│     └───────────────────────────────────────────────────────────────────────────────┘     │");
-            Console.WriteLine("│                                                                                           │");
-            Console.WriteLine("└───────────────────────────────────────────────────────────────────────────────────────────┘");
+            Console.WriteLine("┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐");
+            Console.WriteLine("│┌───────────────────┬───────────────────────────────────────────────────────────────────────────────────────────────┐│");
+            Console.WriteLine("││                   │                                                                                               ││");
+            Console.WriteLine("││                   │                                WELLCOME "+string.Format("{0,-20}",user)+"                                  ││");
+            Console.WriteLine("││                   │                                                                                               ││");
+            Console.WriteLine("│└───────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────┘│");
+            Console.WriteLine("│                                                                                                                     │");
+            Console.WriteLine("│     ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────┐     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     │                                                                                                         │     │");
+            Console.WriteLine("│     └─────────────────────────────────────────────────────────────────────────────────────────────────────────┘     │");
+            Console.WriteLine("│                                                                                                                     │");
+            Console.WriteLine("└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘");
         }   
         public static void CreateMenu(int row,string title){
             
-            GoTo(9,20);Console.WriteLine("┌──────────────────────────────────────────────────┐");
-            Console.CursorLeft = 20;Console.WriteLine("│"+title+"│");
-            Console.CursorLeft = 20;Console.WriteLine("│┌────────────────────────────────────────────────┐│");
+            GoTo(9,33);Console.WriteLine("┌──────────────────────────────────────────────────┐");
+            Console.CursorLeft = 33;Console.WriteLine("│"+title+"│");
+            Console.CursorLeft = 33;Console.WriteLine("│┌────────────────────────────────────────────────┐│");
             for(int i=0;i<row;i++){
-                Console.CursorLeft = 20;Console.WriteLine("││                                                ││");
+                Console.CursorLeft = 33;Console.WriteLine("││                                                ││");
             }
-            Console.CursorLeft = 20;Console.WriteLine("│└────────────────────────────────────────────────┘│");
-            Console.CursorLeft = 20;Console.WriteLine("└──────────────────────────────────────────────────┘");
+            Console.CursorLeft = 33;Console.WriteLine("│└────────────────────────────────────────────────┘│");
+            Console.CursorLeft = 33;Console.WriteLine("└──────────────────────────────────────────────────┘");
         }   
         public static void GoTo(int top,int left){
             Console.CursorTop = top;
             Console.CursorLeft = left;
         }
         public static void Page(int fist,int end){
-            GoTo(26,38);
+            GoTo(34,52);
             Console.WriteLine("<<Page "+fist+" / "+end+">>");
         }
         

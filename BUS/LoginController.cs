@@ -14,6 +14,7 @@ namespace Project1.BUS
         public static Accountant accountant=new();
         public static void updateView(){   
             while(true){ 
+                accountant=new();
                 int choose=LoginView.Menu();
                 if(choose==1){  
                     accountant=LoginView.Login();      
@@ -21,9 +22,12 @@ namespace Project1.BUS
                         HomeController controller=new();
                         controller.updateView();
                     }
+                    else LoginView.loginFail();
                 }
                 else if(choose==2){
-                    
+                    accountant=LoginView.Register(); 
+                    if(accountant.Username!=null)
+                        accountant.Create();
                 }
                 else break;
             }

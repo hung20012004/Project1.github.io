@@ -30,7 +30,17 @@ namespace Project1.BUS
                     case 2:
                         Car car2=UpdateCarView.CreateCar();
                         if(car2.Name!=null)
+                        try
+                        {
                             car2.Create();
+                            UpdateCarView.InsertCarSuccess();
+                        }
+                        catch (System.Exception)
+                        {
+                            
+                            UpdateCarView.WarningExistedCar();
+                        }
+                            
                         break;
                 }
                 

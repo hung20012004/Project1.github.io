@@ -17,17 +17,26 @@ namespace Project1.BUS
             }
         }
         public void updateCustomerView2(){
-            Order order=OrderView.customerRequest();
-            if(order.ID!=0){
-                switch (order.state)
-                {
-                    case 1 or 2 or 3:
-                        break;
-                    case 4:
-                        if(OrderView.confirmAlreadyGetCar()==1)
-                           order.AlreadyGetCar(); 
-                        break;
+            
+            while(true){
+                Order order=OrderView.customerRequest();
+                if(order.ID!=0){
+                    switch (order.state)
+                    {
+                        case 1 or 2 or 3:
+                            if(OrderView.OrderMenu1()==1)
+                                order.Delete();
+                            break;
+                        case 4:
+                            if(OrderView.OrderMenu2(order)==1)
+                            order.AlreadyGetCar(); 
+                            break;
+                        case 5:
+                            OrderView.OrderMenu3(order);
+                            break;
+                    }
                 }
+                else break;
             }
         }
         public void updateManagerView(){
@@ -56,7 +65,10 @@ namespace Project1.BUS
                 if(order.ID==0)
                     break;
                 else{   
-                    updateProcessResult(order,OrderView.processResult());
+                    int result=OrderView.processResult();
+                    if(result==0) order.Delete();
+                    else
+                    updateProcessResult(order,result);
                 }
             }
         }
@@ -78,6 +90,19 @@ namespace Project1.BUS
                         temp.carName= $"{reader["car"]}";
                         temp.phone= $"{reader["phone"]}";
                         temp.ID=reader.GetInt32("id");
+                        temp.state=reader.GetInt32("state");
+                        switch (temp.state)
+                        {
+                            case 3: 
+                                temp.State="Waiting create order";
+                                break;
+                            case 4: 
+                                temp.State="Have been payment";
+                                break;
+                            case 5: 
+                                temp.State="Already get car";
+                                break;
+                        }
                         temp.requestTime= $"{reader["request_time"]}";
                         temp.processedRequestTime= $"{reader["processed_request_time"]}";
                         temp.note= $"{reader["note"]}";
@@ -215,6 +240,10 @@ namespace Project1.BUS
                         temp.state=reader.GetInt32("state");
                         switch (temp.state)
                         {
+                            case 0:
+                                temp.State="Cancelled";
+                                temp.totalBill=0;
+                                break;
                             case 1:
                                 temp.State="Waiting";
                                 temp.totalBill=0;
@@ -229,10 +258,20 @@ namespace Project1.BUS
                                 break;
                             case 4:
                                 temp.State="Already paid";
+                                temp.showroomAddress=$"{reader["address"]}";
+                                temp.showroomName=$"{reader["name"]}";
+                                temp.managerName=$"{reader["manager_name"]}";
+                                temp.salesName=$"{reader["sales"]}";
+                                temp.customerName=$"{reader["customer"]}";
                                 temp.totalBill=reader.GetInt64("bill");
                                 break;
                             case 5:
                                 temp.State="Already get car";
+                                temp.showroomAddress=$"{reader["address"]}";
+                                temp.showroomName=$"{reader["name"]}";
+                                temp.managerName=$"{reader["manager_name"]}";
+                                temp.salesName=$"{reader["sales"]}";
+                                temp.customerName=$"{reader["customer"]}";
                                 temp.totalBill=reader.GetInt64("bill");
                                 break;
                         }

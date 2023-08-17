@@ -50,7 +50,7 @@ END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE  update_car(rq_car_id int,rq_engine varchar(100) ,rq_colors varchar(100) ,rq_uphostery varchar(100) ,rq_cylinder int ,rq_displacement double ,rq_length double ,rq_width double ,rq_height double ,rq_weight double ,rq_max_speed int ,rq_seat_num int ,rq_door_num int ,rq_price bigint,rq_quantity int)
+CREATE PROCEDURE  update_car(rq_car_id int,rq_engine varchar(100) ,rq_colors varchar(200) ,rq_uphostery varchar(200) ,rq_cylinder int ,rq_displacement double ,rq_length double ,rq_width double ,rq_height double ,rq_weight double ,rq_max_speed int ,rq_seat_num int ,rq_door_num int ,rq_price bigint,rq_quantity int)
 BEGIN
 	update car
     set engine=rq_engine,
@@ -159,7 +159,7 @@ CREATE PROCEDURE  processed_request(rq_sales_id int)
 BEGIN
     select *
     from all_order
-    where sales_id=rq_sales_id and state=3 ;
+    where sales_id=rq_sales_id and (state=3 or state=4 or state=5) ;
 END //
 DELIMITER ;
 call processed_request(10003);
@@ -191,6 +191,14 @@ BEGIN
     where id=rq_order_id;
 END //
 DELIMITER ;
+DELIMITER //
+CREATE PROCEDURE  delete_order(rq_order_id int)
+BEGIN
+    update order_list
+    set state=0
+    where id=rq_order_id;
+END //
+DELIMITER ;
 -- ---------------------------------------------------------------------------------------
 DELIMITER //
 CREATE PROCEDURE  get_model()
@@ -211,5 +219,75 @@ BEGIN
 		from carsaloon
 		where model_id=rq_model_id;
 	end if;
+END //
+DELIMITER ;
+-- ---------------------------------------------------------------------------------------
+DELIMITER //
+CREATE PROCEDURE  check_username(rq_username varchar(50))
+BEGIN
+	select *
+    from accountant
+    where username=rq_username;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE  check_phone(rq_phone varchar(50))
+BEGIN
+	select *
+    from accountant
+    where phone=rq_phone;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE  create_account(rq_name varchar(50),rq_username varchar(50),rq_password varchar(50),rq_phone varchar(50))
+BEGIN
+	insert into accountant(name,username,password,phone,department,showroom_id)
+    value (rq_name,rq_username,rq_password,rq_phone,"Customer",1);
+END //
+DELIMITER ;
+-- --------------------------------------------------------------------------------------------------------------------
+DELIMITER //
+CREATE PROCEDURE  statistic_by_showroom(rq_name varchar(50),rq_username varchar(50),rq_password varchar(50),rq_phone varchar(50))
+BEGIN
+	insert into accountant(name,username,password,phone,department,showroom_id)
+    value (rq_name,rq_username,rq_password,rq_phone,"Customer",1);
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE  statistic_by_car(rq_month int,rq_year int)
+BEGIN
+	select car,sum(bill)
+	from all_order
+	where year(create_order_time)=rq_year and month(create_order_time)=rq_month
+	group by car
+	order by sum(bill);
+
+END //
+
+DELIMITER ;
+call statistic_by_car(1,2021);
+DELIMITER //
+CREATE PROCEDURE  statistic_by_showroom(rq_month int,rq_year int)
+BEGIN
+	select name as showroom,sum(bill)
+	from all_order
+	where year(create_order_time)=rq_year and month(create_order_time)=rq_month
+	group by name
+	order by sum(bill);
+
+END //
+DELIMITER ;
+call statistic_by_showroom(1,2021);
+
+DELIMITER //
+CREATE PROCEDURE  change_password(rq_id int,rq_password varchar(50))
+BEGIN
+	update accountant
+	set password =rq_password
+    where id=rq_id;
+
 END //
 DELIMITER ;
